@@ -51,8 +51,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static('public'));
 app.use('/.well-known', express.static('public/.well-known'));
 
+const router = express.Router();
+
 // Explicit route for Smithery discovery
-app.get('/.well-known/mcp/server-card.json', (_req, res) => {
+router.get('/.well-known/mcp/server-card.json', (_req, res) => {
   res.json({
     "name": "paid-mcp-server",
     "version": "1.0.0",
@@ -430,13 +432,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 // Set up SSE Transport endpoint
 let transport: SSEServerTransport;
 
-app.get('/sse', async (_req: Request, res: Response) => {
+router.get('/sse', async (_req: Request, res: Response) => {
   logger.info('New SSE Connection established');
   transport = new SSEServerTransport('/message', res);
   await server.connect(transport);
 });
 
-app.post('/message', async (req: Request, res: Response) => {
+router.post('/message', async (req: Request, res: Response) => {
   if (transport) {
     await transport.handlePostMessage(req, res);
   } else {
@@ -444,9 +446,13 @@ app.post('/message', async (req: Request, res: Response) => {
   }
 });
 
-app.get('/', (_req: Request, res: Response) => {
+router.get('/', (_req: Request, res: Response) => {
   res.send('MCP Server is up. Use /sse to connect via SSE.');
 });
+
+// Mount the router on root and netlify function path
+app.use('/', router);
+app.use('/.netlify/functions/api', router);
 
 
 // Global Error Handler
