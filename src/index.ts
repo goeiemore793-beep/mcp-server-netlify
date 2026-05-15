@@ -51,6 +51,22 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static('public'));
 app.use('/.well-known', express.static('public/.well-known'));
 
+// Explicit route for Smithery discovery
+app.get('/.well-known/mcp/server-card.json', (_req, res) => {
+  res.json({
+    "name": "paid-mcp-server",
+    "version": "1.0.0",
+    "description": "A monetized MCP server with Solana and Ethereum payment integration.",
+    "transport": {
+      "type": "sse",
+      "url": "https://mcp-server-tool.netlify.app/sse"
+    },
+    "capabilities": {
+      "tools": true
+    }
+  });
+});
+
 // Crypto config
 const SOLANA_RPC_URL = process.env.SOLANA_RPC_URL || 'https://api.devnet.solana.com';
 const MERCHANT_WALLET_ADDRESS_SOL = process.env.MERCHANT_WALLET_ADDRESS_SOL || 'EW6cbRu9t5dtD6QHgiyjqrdv36fhp9DAFyGJaPZQp8My';
