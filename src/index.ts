@@ -424,10 +424,10 @@ app.post('/message', async (req: Request, res: Response) => {
   }
 });
 
-// Health check endpoint
-app.get('/health', (_req: Request, res: Response): void => {
-  res.json({ status: 'OK', protocol: 'MCP-SSE' });
+app.get('/', (_req: Request, res: Response) => {
+  res.send('MCP Server is up. Use /sse to connect via SSE.');
 });
+
 
 // Global Error Handler
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
