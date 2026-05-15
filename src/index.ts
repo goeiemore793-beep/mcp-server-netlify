@@ -49,6 +49,7 @@ const PORT = process.env.PORT || 3000;
 
 // Serve static files (for .well-known/mcp/server-card.json)
 app.use(express.static('public'));
+app.use('/.well-known', express.static('public/.well-known'));
 
 // Crypto config
 const SOLANA_RPC_URL = process.env.SOLANA_RPC_URL || 'https://api.devnet.solana.com';

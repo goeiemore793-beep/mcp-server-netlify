@@ -1,0 +1,12 @@
+{
+  "name": "paid-mcp-server",
+  "version": "1.0.0",
+  "description": "A monetized MCP server with Solana and Ethereum payment integration.",
+  "transport": {
+    "type": "sse",
+    "url": "https://mcp-server-tool.netlify.app/sse"
+  },
+  "capabilities": {
+    "tools": true
+  }
+}
