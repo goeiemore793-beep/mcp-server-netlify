@@ -47,6 +47,9 @@ const logger = winston.createLogger({
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Serve static files (for .well-known/mcp/server-card.json)
+app.use(express.static('public'));
+
 // Crypto config
 const SOLANA_RPC_URL = process.env.SOLANA_RPC_URL || 'https://api.devnet.solana.com';
 const MERCHANT_WALLET_ADDRESS_SOL = process.env.MERCHANT_WALLET_ADDRESS_SOL || 'EW6cbRu9t5dtD6QHgiyjqrdv36fhp9DAFyGJaPZQp8My';
