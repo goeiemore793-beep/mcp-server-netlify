@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - AUTH_SECRET=${AUTH_SECRET}
+      - REDIS_URL=redis://redis:6379
+      - RATE_LIMIT=${RATE_LIMIT:-100}
+      - CORS_ORIGIN=${CORS_ORIGIN:-*}
+      - NODE_ENV=${NODE_ENV:-production}
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped

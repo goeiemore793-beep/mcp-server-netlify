@@ -1,0 +1,32 @@
+# Smithery configuration for easy publishing to the MCP registry
+name: "paid-mcp-server"
+description: "A monetized MCP server that requires Crypto payments (Solana & Ethereum) before executing tools."
+version: "1.0.0"
+author: "MCP Server Team"
+
+build:
+  command: "npm run build"
+
+start:
+  command: "npm start"
+
+# Environment variables required by the server
+env:
+  SOLANA_RPC_URL:
+    description: "Your Solana RPC URL (e.g., from Alchemy or QuickNode)"
+    required: false
+  MERCHANT_WALLET_ADDRESS_SOL:
+    description: "The Solana Wallet Address where you will receive payments"
+    required: false
+  ETH_RPC_URL:
+    description: "Your Ethereum RPC URL"
+    required: false
+  MERCHANT_WALLET_ADDRESS_ETH:
+    description: "The Ethereum Wallet Address where you will receive payments"
+    required: false
+  AUTH_SECRET:
+    description: "Secret key for JWT authentication"
+    required: true
+  REDIS_URL:
+    description: "Redis connection string for rate limiting and payment state"
+    required: false
