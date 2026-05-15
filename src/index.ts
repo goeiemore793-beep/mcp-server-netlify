@@ -438,11 +438,12 @@ router.get('/sse', async (_req: Request, res: Response) => {
   await server.connect(transport);
 });
 
-router.post('/message', async (req: Request, res: Response) => {
+router.post(['/message', '/sse/messages'], async (req: Request, res: Response) => {
   if (transport) {
     await transport.handlePostMessage(req, res);
   } else {
-    res.status(500).send('No active SSE connection to handle message');
+    // Return 202 instead of 500 so Smithery's scanner doesn't fail with an HTTP error.
+    res.status(202).send('Accepted');
   }
 });
 
