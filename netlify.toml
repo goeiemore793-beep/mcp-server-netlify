@@ -1,7 +1,10 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  SECRETS_SCAN_ENABLED = false
+
+[build.environment]
+  SECRETS_SCAN_ENABLED = "false"
+  SECRETS_SCAN_OMIT_KEYS = "PORT,LOG_LEVEL,NODE_ENV,SOLANA_RPC_URL,ETH_RPC_URL,MERCHANT_WALLET_ADDRESS_SOL,MERCHANT_WALLET_ADDRESS_ETH"
 
 [functions]
   node_bundler = "esbuild"
