@@ -1,0 +1,39 @@
+{
+  "serviceName": "MCP Server",
+  "slug": "mcp-server-netlify",
+  "description": "Paid MCP server hosted on Netlify with public discovery, JWT auth, and subscription-based tool access.",
+  "baseUrl": "https://mcp-server-netlify-20260513.netlify.app",
+  "discoveryUrl": "https://mcp-server-netlify-20260513.netlify.app/discovery",
+  "auth": {
+    "createAccountUrl": "https://mcp-server-netlify-20260513.netlify.app/api/auth/create",
+    "refreshTokenUrl": "https://mcp-server-netlify-20260513.netlify.app/api/auth/refresh"
+  },
+  "api": {
+    "executeToolUrl": "https://mcp-server-netlify-20260513.netlify.app/api/mcp",
+    "healthUrl": "https://mcp-server-netlify-20260513.netlify.app/health"
+  },
+  "tags": ["paid", "mcp", "tools", "api", "productivity", "automation", "data"],
+  "categories": ["utilities", "productivity", "data", "api", "enterprise"],
+  "features": [
+    "Public discovery endpoint",
+    "JWT authentication",
+    "Subscription-based paid access",
+    "Netlify deployment",
+    "Rate limiting",
+    "Redis-backed storage"
+  ],
+  "plans": {
+    "FREE": {
+      "maxCalls": 100,
+      "includedTools": ["basic", "text"]
+    },
+    "PRO": {
+      "maxCalls": 5000,
+      "includedTools": ["basic", "text", "advanced", "json", "data", "api", "csv", "search", "transform", "format"]
+    },
+    "ENTERPRISE": {
+      "maxCalls": 50000,
+      "includedTools": ["basic", "text", "advanced", "json", "data", "api", "csv", "search", "transform", "format", "database", "email", "files", "security", "analytics", "admin", "webhook", "cache", "monitor", "batch"]
+    }
+  }
+}

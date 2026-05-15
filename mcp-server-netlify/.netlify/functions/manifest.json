@@ -1,0 +1,1 @@
+{"functions":[{"bundler":"esbuild","buildData":{"runtimeAPIVersion":1},"mainFile":"D:\\ENDPOINT\\mcp-server-netlify\\functions-build\\index.js","name":"index","priority":10,"path":"D:\\ENDPOINT\\mcp-server-netlify\\.netlify\\functions\\index.zip","runtime":"js"}],"system":{"arch":"x64","platform":"win32"},"timestamp":1778668452509,"version":1}
